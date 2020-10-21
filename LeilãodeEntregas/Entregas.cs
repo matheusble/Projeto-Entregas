@@ -12,7 +12,8 @@ namespace LeilãodeEntregas
         public string Estado;
         public int Bonus;
         public int HorarioSaida;
-
+        public int TempoTotal;
+        public string Caminho;
 
         public Entregas(int horarioSaida, string estado, int bonus)
         {
@@ -20,6 +21,7 @@ namespace LeilãodeEntregas
             this.Estado = estado;
             this.Bonus = bonus;
 
+            this.Caminho = "A=>" + estado;
         }
     }
 }

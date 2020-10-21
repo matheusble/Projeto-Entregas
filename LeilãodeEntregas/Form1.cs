@@ -321,10 +321,87 @@ namespace LeilãodeEntregas
                 lstBTempo.Items.Add("Entrega " + entrega + " - Tempo: " + path.tempoGasto*2);
                 entrega++;
             }
+        
+        CalcularMelhoresCaminhos();
+    }
+
+    public void CalcularMelhoresCaminhos()
+    {
+
+        List<EntregasPossiveis> entrega = new List<EntregasPossiveis>();
+        int tempoTotal = 0;
+        int caminhosTotais = 0;
+        for (int z = 0; z < lstEntregas.Count; z++)
+        {
+            entrega.Add(new EntregasPossiveis((lstEntregas[z].Caminho), lstEntregas[z].Bonus));
+            caminhosTotais++;
         }
 
-    
+        for (int i = 0; i < lstEntregas.Count; i++)
+        {
+            EntregasPossiveis x = new EntregasPossiveis();
+            x.Caminhos.Append(lstEntregas[i].Caminho + "    ");
+            x.Lucro += lstEntregas[i].Bonus;
+            tempoTotal += lstEntregas[i].HorarioSaida + lstEntregas[i].TempoTotal;
 
-        
+            for (int j = 0; j < lstEntregas.Count; j++)
+            {
+                foreach (EntregasPossiveis nova in entrega)
+                {
+                    if (nova.Caminhos.ToString().Contains(lstEntregas[j].Caminho))
+                        continue;
+                    else if (tempoTotal <= lstEntregas[j].HorarioSaida)
+                    {
+                        x.Caminhos.Append(lstEntregas[j].Caminho + "    ");
+                        x.Lucro += lstEntregas[j].Bonus;
+                        tempoTotal += lstEntregas[j].HorarioSaida + lstEntregas[j].TempoTotal;
+                        j = 0;
+                        caminhosTotais++;
+                    }
+                }
+            }
+            entrega.Add(x);
+            tempoTotal = 0;
+        }
+
+        int melhorLucro = entrega.Max(x => x.Lucro);
+        EntregasPossiveis ent = entrega.Find(x => x.Lucro == melhorLucro);
+
+        MessageBox.Show("O melhor lucro possível é seguindo o caminho: \n" + ent.Caminhos, "Lucro Total = " + ent.Lucro, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        /*
+        for (int j = 0; j < lstEntregas.Count; j++)
+        {
+            for (int x = j + 1; x < n.Length; x++)
+            {
+                //se Tsj + Tj <= Tsx add(caminhos + lucro)
+                Console.WriteLine((n[j] + n[x]));
+            }
+        }
+
+        int total = 0;
+        for (int z = 0; z < n.Length; z++)
+        {
+            for (int l = z + 1; l < n.Length; l++)
+            {
+                if (l == z + 1)
+                {
+                    //se Tsz + Tz <= Tsl Add(caminhos + lucro))
+                    total += n[l] + n[z];
+                    Console.WriteLine(total);
+                }
+                else
+                {
+                    //se total <= Tsl Add(caminho + lucro)
+                    total += n[l];
+                    Console.WriteLine(total);
+                }
+            }
+
+            total = 0;
+        }*/
+
     }
+
+}
 }
