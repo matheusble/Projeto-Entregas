@@ -327,16 +327,17 @@ namespace LeilãodeEntregas
 
     public void CalcularMelhoresCaminhos()
     {
-
+        //lista com as entregas possiveis baseadas no calculo de hora de saida do ponto A(raiz)
         List<EntregasPossiveis> entrega = new List<EntregasPossiveis>();
+
         int tempoTotal = 0;
-        int caminhosTotais = 0;
+        //Primeiro for adiciona todos os caminhos sem soma de caminhos
         for (int z = 0; z < lstEntregas.Count; z++)
         {
             entrega.Add(new EntregasPossiveis((lstEntregas[z].Caminho), lstEntregas[z].Bonus));
-            caminhosTotais++;
         }
 
+        //Segundo for tenta achar os caminhos que podem ser somados aos caminhos iniciais
         for (int i = 0; i < lstEntregas.Count; i++)
         {
             EntregasPossiveis x = new EntregasPossiveis();
@@ -348,15 +349,16 @@ namespace LeilãodeEntregas
             {
                 foreach (EntregasPossiveis nova in entrega)
                 {
+                    //Se o caminho já tiver sido adicionado segue para a proxima interação
                     if (nova.Caminhos.ToString().Contains(lstEntregas[j].Caminho))
                         continue;
+                    //Se o tempo total dos caminhos anteriores, levando em conta o horario de saída + o tempo total de viagem for MENOR que o Horário de saída do próximo caminho ele adiciona
                     else if (tempoTotal <= lstEntregas[j].HorarioSaida)
                     {
                         x.Caminhos.Append(lstEntregas[j].Caminho + "    ");
                         x.Lucro += lstEntregas[j].Bonus;
                         tempoTotal += lstEntregas[j].HorarioSaida + lstEntregas[j].TempoTotal;
                         j = 0;
-                        caminhosTotais++;
                     }
                 }
             }
@@ -368,38 +370,6 @@ namespace LeilãodeEntregas
         EntregasPossiveis ent = entrega.Find(x => x.Lucro == melhorLucro);
 
         MessageBox.Show("O melhor lucro possível é seguindo o caminho: \n" + ent.Caminhos, "Lucro Total = " + ent.Lucro, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        /*
-        for (int j = 0; j < lstEntregas.Count; j++)
-        {
-            for (int x = j + 1; x < n.Length; x++)
-            {
-                //se Tsj + Tj <= Tsx add(caminhos + lucro)
-                Console.WriteLine((n[j] + n[x]));
-            }
-        }
-
-        int total = 0;
-        for (int z = 0; z < n.Length; z++)
-        {
-            for (int l = z + 1; l < n.Length; l++)
-            {
-                if (l == z + 1)
-                {
-                    //se Tsz + Tz <= Tsl Add(caminhos + lucro))
-                    total += n[l] + n[z];
-                    Console.WriteLine(total);
-                }
-                else
-                {
-                    //se total <= Tsl Add(caminho + lucro)
-                    total += n[l];
-                    Console.WriteLine(total);
-                }
-            }
-
-            total = 0;
-        }*/
 
     }
 
