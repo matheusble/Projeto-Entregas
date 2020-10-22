@@ -90,7 +90,8 @@ namespace LeilãodeEntregas
 
                                     while ((linha = r.ReadLine()) != null)
                                     {
-                                        linhas.Add(linha.ToUpper().Trim());
+                                        if (linha.Trim() != string.Empty)
+                                            linhas.Add(linha.ToUpper().Trim());
                                     }
                                 }
 
