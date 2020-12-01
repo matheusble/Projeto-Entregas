@@ -63,6 +63,8 @@ namespace LeilãodeEntregas
         {
             lstBCaminho.Visible = false;
             lstBTempo.Visible = false;
+            lblTempo.Visible = false;
+            lblTrajetos.Visible = false;
             lstBTrajeto.Items.Clear();
             lstBTempo.Items.Clear();
             lstBCaminho.Items.Clear();
@@ -97,6 +99,11 @@ namespace LeilãodeEntregas
 
                                 if (linhas[0] != null)
                                 {
+                                    if (linhas[0].Contains(','))
+                                    {
+                                        linhas[0] = linhas[0].Remove(linhas[0].IndexOf(','), linhas[0].Length - linhas[0].IndexOf(',')) ;
+                                    }
+
                                     if (!int.TryParse(linhas[0], out vertices))
                                     {
                                         MessageBox.Show("A matriz deve ser numérica", "Erro linha 1");
@@ -120,6 +127,9 @@ namespace LeilãodeEntregas
                                                     Regex Header = new Regex(@"^[A-ZÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ]+$");
                                                     for (int HeaderIndex = 0; HeaderIndex < HeaderVertices.Length; HeaderIndex++)
                                                     {
+                                                        if (HeaderVertices[HeaderIndex].Contains(';'))
+                                                            HeaderVertices[HeaderIndex] = HeaderVertices[HeaderIndex].Replace(";", "");
+
                                                         if (!Header.IsMatch(HeaderVertices[HeaderIndex]))
                                                         {
                                                             MessageBox.Show("Nome do vertice imcompatível! Nome do vertice deve ser escrito entre aspas simples e deve conter apenas letras", "Erro vertice " + HeaderIndex, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -141,13 +151,16 @@ namespace LeilãodeEntregas
                                             {
                                                 if (linhas[linhaMapa].Contains(','))
                                                 {
-                                                    string[] custo = linhas[linhaMapa].Split(',');
-                                                    if (custo.Length == vertices)
+                                                    string[] tempoPercurso = linhas[linhaMapa].Split(',');
+                                                    if (tempoPercurso.Length == vertices)
                                                     {
                                                         //for(int j = 0; j < vertices; j++)   Willian 18/10 config para não pegar a volta
                                                         for (int j = linhaMapa - 2; j < vertices; j++)
                                                         {
-                                                            if (int.TryParse(custo[j], out minutos))
+                                                            if (tempoPercurso[j].Contains(';'))
+                                                                tempoPercurso[j] = tempoPercurso[j].Replace(";", "");
+
+                                                            if (int.TryParse(tempoPercurso[j], out minutos))
                                                             {
                                                                 if (linhaMapa == 2 && minutos > 0)
                                                                     arvore.Add(new Mapa(HeaderVertices[linhaMapa - 2], HeaderVertices[j], minutos));
@@ -183,6 +196,12 @@ namespace LeilãodeEntregas
 
                                             #region Entregas
 
+                                            if (linhas[vertices + 2].Contains(','))
+                                                linhas[vertices + 2] = linhas[vertices + 2].Remove(linhas[vertices + 2].IndexOf(','), linhas[vertices + 2].Length - linhas[vertices + 2].IndexOf(','));
+                                           
+                                            if (linhas[vertices + 2].Contains(';'))
+                                                linhas[vertices + 2] = linhas[vertices + 2].Replace(";", "");
+
                                             if (!int.TryParse(linhas[vertices + 2], out entregas))
                                             {
                                                 MessageBox.Show("Campo de entregas incorreto! Deve ser numérico!", "Erro linha " + (vertices + 3), MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -216,6 +235,10 @@ namespace LeilãodeEntregas
                                                                 MessageBox.Show("Formato de entrega incorreto!", "Erro linha " + z);
                                                                 return;
                                                             }
+
+                                                            if (entrega[2].Contains(';') || entrega[2].Contains(','))
+                                                                entrega[2] = entrega[2].Replace(",", "").Replace(";", "");
+
                                                             if (!int.TryParse(entrega[0], out tempo) || !int.TryParse(entrega[2], out bonus))
                                                             {
                                                                 MessageBox.Show("O formato de bonus e tempo da entrega deve ser inteiro", "Erro linha " + z);
@@ -295,6 +318,7 @@ namespace LeilãodeEntregas
             int entrega = 1;
             foreach (Entregas x in lstEntregas)
             {
+                //usar dikstra
                 string y = String.Empty;
                 Queue<Vertex> q = new Queue<Vertex>();
                 List<Caminho> paths = new List<Caminho>();
@@ -331,6 +355,8 @@ namespace LeilãodeEntregas
             }
         
         CalcularMelhoresCaminhos();
+        //CalcularMelhoresCaminhosWIS();
+        btnCalcular.Enabled = false;
     }
 
     public void CalcularMelhoresCaminhos()
@@ -374,6 +400,15 @@ namespace LeilãodeEntregas
         MessageBox.Show("O melhor lucro possível é seguindo o caminho: \n" + ent.Caminhos, "Lucro Total = " + ent.Lucro, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
     }
+
+        private void CalcularMelhoresCaminhosWIS() 
+        { 
+        
+        
+        
+        
+        
+        }
 
 }
 }

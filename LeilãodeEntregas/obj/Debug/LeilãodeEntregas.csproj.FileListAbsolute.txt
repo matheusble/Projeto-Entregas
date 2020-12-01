@@ -18,3 +18,13 @@ C:\Users\Lipe\Desktop\unisociesc\2020-2\PI\Projeto-Entregas\LeilãodeEntregas\ob
 C:\Users\Lipe\Desktop\unisociesc\2020-2\PI\Projeto-Entregas\LeilãodeEntregas\obj\Debug\LeilãodeEntregas.csproj.CoreCompileInputs.cache
 C:\Users\Lipe\Desktop\unisociesc\2020-2\PI\Projeto-Entregas\LeilãodeEntregas\obj\Debug\LeilãodeEntregas.exe
 C:\Users\Lipe\Desktop\unisociesc\2020-2\PI\Projeto-Entregas\LeilãodeEntregas\obj\Debug\LeilãodeEntregas.pdb
+C:\Users\Lipe\Desktop\unisociesc\2020-2\Projeto integrador\Projeto-Entregas\LeilãodeEntregas\bin\Debug\LeilãodeEntregas.exe.config
+C:\Users\Lipe\Desktop\unisociesc\2020-2\Projeto integrador\Projeto-Entregas\LeilãodeEntregas\bin\Debug\LeilãodeEntregas.exe
+C:\Users\Lipe\Desktop\unisociesc\2020-2\Projeto integrador\Projeto-Entregas\LeilãodeEntregas\bin\Debug\LeilãodeEntregas.pdb
+C:\Users\Lipe\Desktop\unisociesc\2020-2\Projeto integrador\Projeto-Entregas\LeilãodeEntregas\obj\Debug\LeilãodeEntregas.csprojAssemblyReference.cache
+C:\Users\Lipe\Desktop\unisociesc\2020-2\Projeto integrador\Projeto-Entregas\LeilãodeEntregas\obj\Debug\LeilãodeEntregas.Leilao.resources
+C:\Users\Lipe\Desktop\unisociesc\2020-2\Projeto integrador\Projeto-Entregas\LeilãodeEntregas\obj\Debug\LeilãodeEntregas.Properties.Resources.resources
+C:\Users\Lipe\Desktop\unisociesc\2020-2\Projeto integrador\Projeto-Entregas\LeilãodeEntregas\obj\Debug\LeilãodeEntregas.csproj.GenerateResource.cache
+C:\Users\Lipe\Desktop\unisociesc\2020-2\Projeto integrador\Projeto-Entregas\LeilãodeEntregas\obj\Debug\LeilãodeEntregas.csproj.CoreCompileInputs.cache
+C:\Users\Lipe\Desktop\unisociesc\2020-2\Projeto integrador\Projeto-Entregas\LeilãodeEntregas\obj\Debug\LeilãodeEntregas.exe
+C:\Users\Lipe\Desktop\unisociesc\2020-2\Projeto integrador\Projeto-Entregas\LeilãodeEntregas\obj\Debug\LeilãodeEntregas.pdb
