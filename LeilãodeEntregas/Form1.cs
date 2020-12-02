@@ -355,7 +355,7 @@ namespace LeilãodeEntregas
             }
         
         CalcularMelhoresCaminhos();
-        //CalcularMelhoresCaminhosWIS();
+        CalcularMelhoresCaminhosWIS();
         btnCalcular.Enabled = false;
     }
 
@@ -399,16 +399,52 @@ namespace LeilãodeEntregas
 
         MessageBox.Show("O melhor lucro possível é seguindo o caminho: \n" + ent.Caminhos, "Lucro Total = " + ent.Lucro, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-    }
-
-        private void CalcularMelhoresCaminhosWIS() 
-        { 
-        
-        
-        
-        
-        
         }
 
-}
+
+        private void CalcularMelhoresCaminhosWIS()
+        {
+            List<EntregasWIP> entrega = new List<EntregasWIP>();
+            entrega.Add(new EntregasWIP("inicio", 0, 0, 0));
+            for (int z = 0; z < lstEntregas.Count; z++)
+                entrega.Add(new EntregasWIP((lstEntregas[z].Caminho), lstEntregas[z].HorarioSaida, lstEntregas[z].TempoTotal + lstEntregas[z].HorarioSaida, lstEntregas[z].Bonus));
+
+            //orderby == quicksort == O(n log n)
+            var y = entrega.OrderBy(x => x.horarioTermino);
+            
+            List<EntregasWIP> entregasO = entrega.OrderBy(x => x.horarioTermino).ToList();
+
+
+            for (int x = entregasO.Count -1; x > 0; x--)
+            {
+                for (int j = x - 1; j >= 0; j--)
+                {
+                    if (entregasO[x].horarioSaida >= entregasO[j].horarioTermino)
+                    {
+                        entregasO[x].predecessora = j;
+                        break;
+                    }
+                }
+            }
+            int index = 0;
+            int valor = 0;
+            for (int w = 1; w <= entregasO.Count - 1; w++)
+            {
+                entregasO[w].BonusTotal = entregasO[w].custo + entregasO[entregasO[w].predecessora].BonusTotal >= entregasO[w - 1].BonusTotal ? entregasO[w].custo + entregasO[entregasO[w].predecessora].BonusTotal : entregasO[w - 1].BonusTotal;
+                if (valor <= entregasO[w].BonusTotal)
+                {
+                    valor = entregasO[w].BonusTotal;
+                    index = w;
+                }
+            }
+                int raiz = index;
+                Console.WriteLine("Melhores caminhos: ");
+                while (raiz != 0)
+                {
+                    Console.WriteLine(entregasO[raiz].caminho);
+                    raiz = entregasO[raiz].predecessora;
+                }
+            }
+        
+    }
 }
