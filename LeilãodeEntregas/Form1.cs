@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -228,7 +229,6 @@ namespace LeilãodeEntregas
                                                 matriz[i+1, 0] = matriz[0, i+1];
                                                     }
                                             imprimeMatriz(matriz, lblmatriz, vertices, vertices );
-                                            MessageBox.Show("");
 
                                             
                                                    
@@ -342,8 +342,13 @@ namespace LeilãodeEntregas
                                 }
                             }
                             Dijkstra dijk = new Dijkstra();
+                            Stopwatch sw = new Stopwatch();
+                            sw.Start();
                             entregasD = dijk.dijkstra(matriz, 0, headerMatriz);
-                            Console.WriteLine("##############");
+                            sw.Stop();
+                            Console.Write("DIJKSTRA  -> tempo gasto : " + sw.ElapsedTicks);
+                            
+                            Console.WriteLine("\n\n##############");
                             foreach (EntregasDikstra x in entregasD)
                                 Console.WriteLine(x.dijksCaminho + "   " + x.dijksDistancia);
 
@@ -386,14 +391,17 @@ namespace LeilãodeEntregas
                 x.Destino = BFS.Buscar(grafo.vertex[0], x.Estado);
             }
             int entrega = 1;
+            Stopwatch sw = new Stopwatch();
+
+            sw.Start();
             foreach (Entregas x in lstEntregas)
             {
-                //usar dikstra
                 string y = String.Empty;
                 Queue<Vertex> q = new Queue<Vertex>();
                 List<Caminho> paths = new List<Caminho>();
                 string caminho = string.Empty;
-
+                int menortempopai = int.MaxValue;
+                int indicemenor = 0;
                 q.Enqueue(x.Destino);
                 Caminho path = new Caminho();
                 while (q.Count > 0)
@@ -401,9 +409,21 @@ namespace LeilãodeEntregas
                     Vertex nd = q.Dequeue();
                     path.path.Add(nd.Estado);
                     path.tempoGasto += nd.Tempo;
-                    if (nd.Nivel > 0)
-                        q.Enqueue(nd.Pais[0]);
+                    if (nd.Nivel > 0) {
+                        for(int s = 0; s < nd.Pais.Count; s++)
+                        {
+                            if(nd.Pais[s].Tempo < menortempopai) 
+                            {
+                                menortempopai = nd.Pais[s].Tempo;
+                                indicemenor = s;
+                            }
+                        }
+                        q.Enqueue(nd.Pais[indicemenor]);
+                      }
                 }
+
+                
+                
 
                 for (int z = path.path.Count - 1; z >= 0; z--)
                 {
@@ -423,7 +443,8 @@ namespace LeilãodeEntregas
                 }
 
             }
-        
+            sw.Stop();
+            Console.Write("BFS  -> tempo gasto : " + sw.ElapsedTicks);
         CalcularMelhoresCaminhos();
         CalcularMelhoresCaminhosWIS();
         btnCalcular.Enabled = false;
@@ -476,7 +497,7 @@ namespace LeilãodeEntregas
         {
             List<EntregasWIP> entrega = new List<EntregasWIP>();
             entrega.Add(new EntregasWIP("inicio", 0, 0, 0));
-            foreach (EntregasDikstra ent in entregasD) 
+            foreach (EntregasDikstra ent in entregasD)  //n²
             {
                 foreach (Entregas x in lstEntregas)
                     if (ent.dijksCaminho == x.Caminho)
@@ -486,16 +507,14 @@ namespace LeilãodeEntregas
                     }
             }
 
-            for (int z = 0; z < lstEntregas.Count; z++)
-                entrega.Add(new EntregasWIP((lstEntregas[z].Caminho), lstEntregas[z].HorarioSaida, lstEntregas[z].TempoTotal + lstEntregas[z].HorarioSaida, lstEntregas[z].Bonus));
+            for (int z = 0; z < lstEntregas.Count; z++)//n
+                entrega.Add(new EntregasWIP((lstEntregas[z].Caminho), lstEntregas[z].HorarioSaida, lstEntregas[z].TempoTotal + lstEntregas[z].HorarioSaida, lstEntregas[z].Bonus)); 
             
-            //orderby == quicksort == O(n log n)
-            //var y = entrega.OrderBy(x => x.horarioTermino);
             
-            List<EntregasWIP> entregasO = entrega.OrderBy(x => x.horarioTermino).ToList();
+            List<EntregasWIP> entregasO = entrega.OrderBy(x => x.horarioTermino).ToList(); // N LOG N
 
 
-            for (int x = entregasO.Count -1; x > 0; x--)
+            for (int x = entregasO.Count -1; x > 0; x--)//n²
             {
                 for (int j = x - 1; j >= 0; j--)
                 {
@@ -510,7 +529,7 @@ namespace LeilãodeEntregas
             int index = 0;
             int valor = 0;
             List<int> mesmoLucro = new List<int>();
-            for (int w = 1; w <= entregasO.Count - 1; w++)
+            for (int w = 1; w <= entregasO.Count - 1; w++)//n
             {
                 entregasO[w].BonusTotal = entregasO[w].custo + entregasO[entregasO[w].predecessora].BonusTotal >= entregasO[w - 1].BonusTotal ? entregasO[w].custo + entregasO[entregasO[w].predecessora].BonusTotal : entregasO[w - 1].BonusTotal;
                 if (valor < entregasO[w].BonusTotal)
@@ -564,6 +583,11 @@ namespace LeilãodeEntregas
                     Console.WriteLine(melhoresCaminhos[melhores]);
 
             }
-        
+
+        private void btnComparacao_Click(object sender, EventArgs e)
+        {
+            Comparativo form = new Comparativo();
+            form.ShowDialog();
+        }
     }
 }

@@ -43,6 +43,7 @@
             this.lblTempo = new System.Windows.Forms.Label();
             this.lblTrajetos = new System.Windows.Forms.Label();
             this.lblmatriz = new System.Windows.Forms.Label();
+            this.btnComparacao = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -218,6 +219,18 @@
             this.lblmatriz.Size = new System.Drawing.Size(35, 13);
             this.lblmatriz.TabIndex = 11;
             this.lblmatriz.Text = "label1";
+            this.lblmatriz.Visible = false;
+            // 
+            // btnComparacao
+            // 
+            this.btnComparacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnComparacao.Location = new System.Drawing.Point(7, 635);
+            this.btnComparacao.Name = "btnComparacao";
+            this.btnComparacao.Size = new System.Drawing.Size(184, 51);
+            this.btnComparacao.TabIndex = 12;
+            this.btnComparacao.Text = "Dijkstra vs A*";
+            this.btnComparacao.UseVisualStyleBackColor = true;
+            this.btnComparacao.Click += new System.EventHandler(this.btnComparacao_Click);
             // 
             // Leilao
             // 
@@ -227,6 +240,7 @@
             this.BackgroundImage = global::LeilãodeEntregas.Properties.Resources.Delivery_Express;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1252, 798);
+            this.Controls.Add(this.btnComparacao);
             this.Controls.Add(this.lblmatriz);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -265,6 +279,7 @@
         private System.Windows.Forms.Label lblTempo;
         private System.Windows.Forms.Label lblTrajetos;
         private System.Windows.Forms.Label lblmatriz;
+        private System.Windows.Forms.Button btnComparacao;
     }
 }
 

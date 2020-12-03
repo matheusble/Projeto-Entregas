@@ -28,3 +28,4 @@ C:\Users\Lipe\Desktop\unisociesc\2020-2\Projeto integrador\Projeto-Entregas\Leil
 C:\Users\Lipe\Desktop\unisociesc\2020-2\Projeto integrador\Projeto-Entregas\LeilãodeEntregas\obj\Debug\LeilãodeEntregas.csproj.CoreCompileInputs.cache
 C:\Users\Lipe\Desktop\unisociesc\2020-2\Projeto integrador\Projeto-Entregas\LeilãodeEntregas\obj\Debug\LeilãodeEntregas.exe
 C:\Users\Lipe\Desktop\unisociesc\2020-2\Projeto integrador\Projeto-Entregas\LeilãodeEntregas\obj\Debug\LeilãodeEntregas.pdb
+C:\Users\Lipe\Desktop\unisociesc\2020-2\Projeto integrador\Projeto-Entregas\LeilãodeEntregas\obj\Debug\LeilãodeEntregas.Comparativo.resources

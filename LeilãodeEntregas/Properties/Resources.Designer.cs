@@ -73,6 +73,16 @@ namespace LeilãodeEntregas.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Astar {
+            get {
+                object obj = ResourceManager.GetObject("Astar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Delivery_dicas_para_aperfeiçoar_suas_entregas_em_domicílio_automacao_comercial_blumenau {
             get {
                 object obj = ResourceManager.GetObject("Delivery-dicas-para-aperfeiçoar-suas-entregas-em-domicílio-automacao-comercial-bl" +
@@ -87,6 +97,16 @@ namespace LeilãodeEntregas.Properties {
         internal static System.Drawing.Bitmap Delivery_Express {
             get {
                 object obj = ResourceManager.GetObject("Delivery-Express", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Dijkstra {
+            get {
+                object obj = ResourceManager.GetObject("Dijkstra", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
