@@ -10,13 +10,14 @@ namespace LeilãodeEntregas
     {
         private static List<string> vertices = new List<string>();
         private static readonly int NO_PARENT = -1;
+        private static List<EntregasDikstra> dEntregas = new List<EntregasDikstra>();
 
         // Function that implements Dijkstra's  
         // single source shortest path  
         // algorithm for a graph represented  
         // using adjacency matrix  
         // representation  
-        public void dijkstra(int[,] adjacencyMatrix, int startVertex, List<string> headers)
+        public List<EntregasDikstra> dijkstra(int[,] adjacencyMatrix, int startVertex, List<string> headers)
         {
             /*string k = string.Empty;
             foreach (string x in headers) 
@@ -83,6 +84,8 @@ namespace LeilãodeEntregas
             }
 
             printSolution(startVertex, shortestDistances, parents);
+
+            return dEntregas;
         }
 
         private static void printSolution(int startVertex,
@@ -98,9 +101,10 @@ namespace LeilãodeEntregas
             {
                 if (vertexIndex != startVertex)
                 {
-                    Console.Write("\n" + vertices[startVertex] + " -> ");
+                    Console.Write("\n" + vertices[startVertex] + "=>");
                     Console.Write(vertices[vertexIndex] + " \t\t ");
                     Console.Write(distances[vertexIndex] + "\t\t");
+                    dEntregas.Add(new EntregasDikstra(vertices[startVertex] + "=>" + vertices[vertexIndex], distances[vertexIndex] * 2));
                     printPath(vertexIndex, parents);
                 }
             }

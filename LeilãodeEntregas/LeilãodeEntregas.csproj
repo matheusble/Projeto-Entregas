@@ -51,6 +51,7 @@
     <Compile Include="Caminho.cs" />
     <Compile Include="Dijkstra.cs" />
     <Compile Include="Entregas.cs" />
+    <Compile Include="EntregasDikstra.cs" />
     <Compile Include="EntregasPossiveis.cs" />
     <Compile Include="EntregasWIP.cs" />
     <Compile Include="Form1.cs">

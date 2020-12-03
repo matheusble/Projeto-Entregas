@@ -20,6 +20,7 @@ namespace LeilãodeEntregas
         private static List<Entregas> lstEntregas = new List<Entregas>();
         private static int[,] matriz; 
         private List<string> headerMatriz = new List<string>();
+        private List<EntregasDikstra> entregasD;
         public Leilao()
         {
             InitializeComponent();
@@ -340,10 +341,13 @@ namespace LeilãodeEntregas
                                     return;
                                 }
                             }
-                            Dijkstra xy = new Dijkstra();
-                            xy.dijkstra(matriz, 0, headerMatriz);
+                            Dijkstra dijk = new Dijkstra();
+                            entregasD = dijk.dijkstra(matriz, 0, headerMatriz);
+                            Console.WriteLine("##############");
+                            foreach (EntregasDikstra x in entregasD)
+                                Console.WriteLine(x.dijksCaminho + "   " + x.dijksDistancia);
 
-
+                            Console.WriteLine("##############");
                         }
                     }
                 }
@@ -472,9 +476,19 @@ namespace LeilãodeEntregas
         {
             List<EntregasWIP> entrega = new List<EntregasWIP>();
             entrega.Add(new EntregasWIP("inicio", 0, 0, 0));
+            foreach (EntregasDikstra ent in entregasD) 
+            {
+                foreach (Entregas x in lstEntregas)
+                    if (ent.dijksCaminho == x.Caminho)
+                    {
+                        x.TempoTotal = ent.dijksDistancia;
+                        break;
+                    }
+            }
+
             for (int z = 0; z < lstEntregas.Count; z++)
                 entrega.Add(new EntregasWIP((lstEntregas[z].Caminho), lstEntregas[z].HorarioSaida, lstEntregas[z].TempoTotal + lstEntregas[z].HorarioSaida, lstEntregas[z].Bonus));
-
+            
             //orderby == quicksort == O(n log n)
             //var y = entrega.OrderBy(x => x.horarioTermino);
             
@@ -492,18 +506,51 @@ namespace LeilãodeEntregas
                     }
                 }
             }
+
             int index = 0;
             int valor = 0;
+            List<int> mesmoLucro = new List<int>();
             for (int w = 1; w <= entregasO.Count - 1; w++)
             {
                 entregasO[w].BonusTotal = entregasO[w].custo + entregasO[entregasO[w].predecessora].BonusTotal >= entregasO[w - 1].BonusTotal ? entregasO[w].custo + entregasO[entregasO[w].predecessora].BonusTotal : entregasO[w - 1].BonusTotal;
-                if (valor <= entregasO[w].BonusTotal)
+                if (valor < entregasO[w].BonusTotal)
                 {
+                    mesmoLucro.Clear();
                     valor = entregasO[w].BonusTotal;
                     index = w;
+                    mesmoLucro.Add(w);
+                }
+                else if (valor == entregasO[w].BonusTotal) 
+                {
+                    mesmoLucro.Add(w);
                 }
             }
                 int raiz = index;
+                int totalTempoDirigindo = 0;
+                int menorTempoDirigindo = int.MaxValue;
+                int pred = 1;
+                //se tiver empate decide pelo que gasta menos tempo trafegando
+                if(mesmoLucro.Count > 1) { 
+                    for(int h = 0; h< mesmoLucro.Count; h++) 
+                    {
+                        while (pred != 0) 
+                        {
+
+                        totalTempoDirigindo += (entregasO[mesmoLucro[h]].horarioTermino - entregasO[mesmoLucro[h]].horarioSaida);
+                        pred = entregasO[mesmoLucro[h]].predecessora;
+
+                        }
+                    if (totalTempoDirigindo < menorTempoDirigindo)
+                    {
+                        menorTempoDirigindo = totalTempoDirigindo;
+                        index = h;
+                    }
+                    }
+            
+                } 
+                else
+                      raiz = index;
+
                 Console.WriteLine("\n");
                 Console.WriteLine("Melhor(es) Entrega(s): ");
                 List<string> melhoresCaminhos = new List<string>();
