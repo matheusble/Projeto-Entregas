@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="BFS.cs" />
     <Compile Include="Caminho.cs" />
+    <Compile Include="Dijkstra.cs" />
     <Compile Include="Entregas.cs" />
     <Compile Include="EntregasPossiveis.cs" />
     <Compile Include="EntregasWIP.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GrafoMatriz.cs" />
     <Compile Include="Graph.cs" />
     <Compile Include="Mapa.cs" />
     <Compile Include="Program.cs" />
