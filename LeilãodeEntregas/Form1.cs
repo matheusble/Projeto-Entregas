@@ -28,26 +28,26 @@ namespace LeilãodeEntregas
 
         private void btnCarregarArquivo_Click(object sender, EventArgs e)
         {
-            IsUploaded = false;
-            string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string extensao = string.Empty;
-            string caminho = String.Empty;
-            IsUploaded = false;
+            IsUploaded = false;                                                                                               //1
+            string desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);                                    //1
+            string extensao = string.Empty;                                                                                   //1
+            string caminho = String.Empty;                                                                                    //1
+            IsUploaded = false;                                                                                               //1
 
-            OpenFileDialog x = new OpenFileDialog();
-            x.DefaultExt = "Arquivos Csv | *.csv";
-            x.Filter = "Arquivos Csv|*.csv|Tipo Texto|*.txt";
-            x.InitialDirectory = desktop;
+            OpenFileDialog x = new OpenFileDialog();                                                                          //1
+            x.DefaultExt = "Arquivos Csv | *.csv";                                                                            //1
+            x.Filter = "Arquivos Csv|*.csv|Tipo Texto|*.txt";                                                                 //1
+            x.InitialDirectory = desktop;                                                                                     //1
 
-            if (x.ShowDialog() == DialogResult.OK)
+            if (x.ShowDialog() == DialogResult.OK)                                                                            //1
             {
-                caminho = x.FileName;
-                txtCaminho.Text = caminho;
-                extensao = x.FileName.Substring(x.FileName.LastIndexOf('.'));
-                IsUploaded = true;
+                caminho = x.FileName;                                                                                         //1
+                txtCaminho.Text = caminho;                                                                                    //1
+                extensao = x.FileName.Substring(x.FileName.LastIndexOf('.'));                                                 //1
+                IsUploaded = true;                                                                                            //1
             }
 
-            if (IsUploaded)
+            if (IsUploaded)                                                                                                   //1
             {
                 CarregarConteudo(caminho, extensao);
 
@@ -63,39 +63,39 @@ namespace LeilãodeEntregas
 
         public void CarregarConteudo(string caminho, string extensao)
         {
-            lstBCaminho.Visible = false;
-            lstBTempo.Visible = false;
-            lblTempo.Visible = false;
-            lblTrajetos.Visible = false;
-            lstBTrajeto.Items.Clear();
-            lstBTempo.Items.Clear();
-            lstBCaminho.Items.Clear();
-            lstBEntregas.Items.Clear();
-            arvore.Clear();
-            lstEntregas.Clear();
-            HeaderVertices = null;
+            lstBCaminho.Visible = false;                                                                                        //1
+            lstBTempo.Visible = false;                                                                                          //1
+            lblTempo.Visible = false;                                                                                           //1
+            lblTrajetos.Visible = false;                                                                                        //1
+            lstBTrajeto.Items.Clear();                                                                                          //1
+            lstBTempo.Items.Clear();                                                                                            //1
+            lstBCaminho.Items.Clear();                                                                                            //1
+            lstBEntregas.Items.Clear();                                                                                            //1
+            arvore.Clear();                                                                                                        //1
+            lstEntregas.Clear();                                                                                                    //1
+            HeaderVertices = null;                                                                                                   //1
 
-            if (IsUploaded)
+            if (IsUploaded)                                                                                                                   //1
             {
-                if (!String.IsNullOrEmpty(extensao))
+                if (!String.IsNullOrEmpty(extensao))                                                                                          //1
                 {
-                    List<string> linhas = new List<string>();
-                    int vertices = 0;
-                    int entregas = 0;
-                    if (extensao == ".txt" || extensao == ".csv")
+                    List<string> linhas = new List<string>();                                                                                 //1
+                    int vertices = 0;                                                                                                        //1
+                    int entregas = 0;                                                                                                         //1
+                    if (extensao == ".txt" || extensao == ".csv")                                                                             //1
                     {
-                        if (File.Exists(caminho))
+                        if (File.Exists(caminho))                                                                                            //1
                         {
                             try
                             {
-                                using (StreamReader r = new StreamReader(caminho, extensao == ".txt" ? Encoding.UTF8 : Encoding.Default))
+                                using (StreamReader r = new StreamReader(caminho, extensao == ".txt" ? Encoding.UTF8 : Encoding.Default))   //1
                                 {
-                                    string linha;
+                                    string linha;                                                                                            //1
 
-                                    while ((linha = r.ReadLine()) != null)
+                                    while ((linha = r.ReadLine()) != null)                                                                   //n + 1
                                     {
-                                        if (linha.Trim() != string.Empty)
-                                            linhas.Add(linha.ToUpper().Trim());
+                                        if (linha.Trim() != string.Empty)                                                                            //1                                 
+                                            linhas.Add(linha.ToUpper().Trim());                                                                            //1   
                                     }
                                 }
 
@@ -165,8 +165,8 @@ namespace LeilãodeEntregas
                                                     string[] tempoPercurso = linhas[linhaMapa].Split(',');
                                                     if (tempoPercurso.Length == vertices)
                                                     {
-                                                        for(int j = 0; j < vertices; j++)   //Willian 18/10 config para não pegar a volta
-                                                       // for (int j = linhaMapa - 2; j < vertices; j++)
+                                                       for(int j = 0; j < vertices; j++)   //Willian 18/10 config para não pegar a volta
+                                                       //for (int j = linhaMapa - 2; j < vertices; j++)
                                                         {
 
                                                             if (tempoPercurso[j].Contains(';'))
@@ -469,7 +469,7 @@ namespace LeilãodeEntregas
                 entrega.Add(new EntregasWIP((lstEntregas[z].Caminho), lstEntregas[z].HorarioSaida, lstEntregas[z].TempoTotal + lstEntregas[z].HorarioSaida, lstEntregas[z].Bonus));
 
             //orderby == quicksort == O(n log n)
-            var y = entrega.OrderBy(x => x.horarioTermino);
+            //var y = entrega.OrderBy(x => x.horarioTermino);
             
             List<EntregasWIP> entregasO = entrega.OrderBy(x => x.horarioTermino).ToList();
 

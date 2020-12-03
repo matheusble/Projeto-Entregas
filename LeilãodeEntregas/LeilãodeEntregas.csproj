@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AStarMatrix.cs" />
     <Compile Include="BFS.cs" />
     <Compile Include="Caminho.cs" />
     <Compile Include="Dijkstra.cs" />

@@ -22,8 +22,8 @@ namespace LeilãodeEntregas
             foreach (string x in headers) 
             {
                 k += x + "  ";
-            
             }
+
             Console.WriteLine(k);
 
             vertices = headers;
