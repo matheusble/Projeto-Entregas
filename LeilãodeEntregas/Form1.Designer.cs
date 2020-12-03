@@ -40,8 +40,9 @@
             this.lstBCaminho = new System.Windows.Forms.ListBox();
             this.lstBTempo = new System.Windows.Forms.ListBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.lblTrajetos = new System.Windows.Forms.Label();
             this.lblTempo = new System.Windows.Forms.Label();
+            this.lblTrajetos = new System.Windows.Forms.Label();
+            this.lblmatriz = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -189,16 +190,6 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Tragetórias";
             // 
-            // lblTrajetos
-            // 
-            this.lblTrajetos.AutoSize = true;
-            this.lblTrajetos.Location = new System.Drawing.Point(207, 43);
-            this.lblTrajetos.Name = "lblTrajetos";
-            this.lblTrajetos.Size = new System.Drawing.Size(74, 21);
-            this.lblTrajetos.TabIndex = 10;
-            this.lblTrajetos.Text = "Trajetos:";
-            this.lblTrajetos.Visible = false;
-            // 
             // lblTempo
             // 
             this.lblTempo.AutoSize = true;
@@ -209,6 +200,25 @@
             this.lblTempo.Text = "Tempo de entrega:";
             this.lblTempo.Visible = false;
             // 
+            // lblTrajetos
+            // 
+            this.lblTrajetos.AutoSize = true;
+            this.lblTrajetos.Location = new System.Drawing.Point(207, 43);
+            this.lblTrajetos.Name = "lblTrajetos";
+            this.lblTrajetos.Size = new System.Drawing.Size(74, 21);
+            this.lblTrajetos.TabIndex = 10;
+            this.lblTrajetos.Text = "Trajetos:";
+            this.lblTrajetos.Visible = false;
+            // 
+            // lblmatriz
+            // 
+            this.lblmatriz.AutoSize = true;
+            this.lblmatriz.Location = new System.Drawing.Point(47, 243);
+            this.lblmatriz.Name = "lblmatriz";
+            this.lblmatriz.Size = new System.Drawing.Size(35, 13);
+            this.lblmatriz.TabIndex = 11;
+            this.lblmatriz.Text = "label1";
+            // 
             // Leilao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,6 +227,7 @@
             this.BackgroundImage = global::LeilãodeEntregas.Properties.Resources.Delivery_Express;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1252, 798);
+            this.Controls.Add(this.lblmatriz);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -234,6 +245,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -252,6 +264,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label lblTempo;
         private System.Windows.Forms.Label lblTrajetos;
+        private System.Windows.Forms.Label lblmatriz;
     }
 }
 

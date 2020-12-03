@@ -6,75 +6,115 @@ using System.Diagnostics;
 
 namespace LeilãodeEntregas
 {
-    class Dijkstra
+    public class Dijkstra
     {
+        private static List<string> vertices = new List<string>();
+        private static readonly int NO_PARENT = -1;
 
-        public int MinimumDistance(int[] distance, bool[] shortestPathTreeSet, int verticesCount)
+        // Function that implements Dijkstra's  
+        // single source shortest path  
+        // algorithm for a graph represented  
+        // using adjacency matrix  
+        // representation  
+        public void dijkstra(int[,] adjacencyMatrix, int startVertex, List<string> headers)
         {
-            int min = int.MaxValue;
-            int minIndex = 0;
-
-            for (int v = 0; v < verticesCount; ++v)
+            string k = string.Empty;
+            foreach (string x in headers) 
             {
-                if (shortestPathTreeSet[v] == false && distance[v] <= min)
+                k += x + "  ";
+            
+            }
+            Console.WriteLine(k);
+
+            vertices = headers;
+            int nVertices = adjacencyMatrix.GetLength(0);
+
+            int[] shortestDistances = new int[nVertices];
+            bool[] added = new bool[nVertices];
+
+            for (int vertexIndex = 0; vertexIndex < nVertices;
+                                                vertexIndex++)
+            {
+                shortestDistances[vertexIndex] = int.MaxValue;
+                added[vertexIndex] = false;
+            }
+
+            shortestDistances[startVertex] = 0;
+            int[] parents = new int[nVertices];
+            parents[startVertex] = NO_PARENT;
+
+            // Find shortest path for all  
+            // vertices  
+            for (int i = 1; i < nVertices; i++)
+            {
+
+                int nearestVertex = -1;
+                int shortestDistance = int.MaxValue;
+                for (int vertexIndex = 0;
+                        vertexIndex < nVertices;
+                        vertexIndex++)
                 {
-                    min = distance[v];
-                    minIndex = v;
+                    if (!added[vertexIndex] &&
+                        shortestDistances[vertexIndex] <
+                        shortestDistance)
+                    {
+                        nearestVertex = vertexIndex;
+                        shortestDistance = shortestDistances[vertexIndex];
+                    }
+                }
+
+                added[nearestVertex] = true;
+
+                for (int vertexIndex = 0;
+                        vertexIndex < nVertices;
+                        vertexIndex++)
+                {
+                    int edgeDistance = adjacencyMatrix[nearestVertex, vertexIndex];
+
+                    if (edgeDistance > 0
+                        && ((shortestDistance + edgeDistance) <
+                            shortestDistances[vertexIndex]))
+                    {
+                        parents[vertexIndex] = nearestVertex;
+                        shortestDistances[vertexIndex] = shortestDistance +
+                                                        edgeDistance;
+                    }
                 }
             }
 
-            return minIndex;
+            printSolution(startVertex, shortestDistances, parents);
         }
 
-        public void Print(int[] distance, int verticesCount)
+        private static void printSolution(int startVertex,
+                                        int[] distances,
+                                        int[] parents)
         {
-            Console.WriteLine("Vertex    Distance from source");
+            int nVertices = distances.Length;
+            Console.Write("Vertex\t Distance\tPath");
 
-            for (int i = 0; i < verticesCount; ++i)
-                Console.WriteLine("{0}\t  {1}", i, distance[i]);
-        }
-
-        public void DijkstraAlgo(int[,] graph, int source, int verticesCount)
-        {
-            int[] distance = new int[verticesCount];
-            bool[] shortestPathTreeSet = new bool[verticesCount];
-
-            for (int i = 0; i < verticesCount; ++i)
+            for (int vertexIndex = 0;
+                    vertexIndex < nVertices;
+                    vertexIndex++)
             {
-                distance[i] = int.MaxValue;
-                shortestPathTreeSet[i] = false;
+                if (vertexIndex != startVertex)
+                {
+                    Console.Write("\n" + vertices[startVertex] + " -> ");
+                    Console.Write(vertices[vertexIndex] + " \t\t ");
+                    Console.Write(distances[vertexIndex] + "\t\t");
+                    printPath(vertexIndex, parents);
+                }
             }
-
-            distance[source] = 0;
-
-            for (int count = 0; count < verticesCount - 1; ++count)
-            {
-                int u = MinimumDistance(distance, shortestPathTreeSet, verticesCount);
-                shortestPathTreeSet[u] = true;
-
-                for (int v = 0; v < verticesCount; ++v)
-                    if (!shortestPathTreeSet[v] && Convert.ToBoolean(graph[u, v]) && distance[u] != int.MaxValue && distance[u] + graph[u, v] < distance[v])
-                        distance[v] = distance[u] + graph[u, v];
-            }
-
-            Print(distance, verticesCount);
         }
-
-        static void Main(string[] args)
+        private static void printPath(int currentVertex,
+                                    int[] parents)
         {
-            int[,] graph =  {
-                         { 0, 6, 0, 0, 0, 0, 0, 9, 0 },
-                         { 6, 0, 9, 0, 0, 0, 0, 11, 0 },
-                         { 0, 9, 0, 5, 0, 6, 0, 0, 2 },
-                         { 0, 0, 5, 0, 9, 16, 0, 0, 0 },
-                         { 0, 0, 0, 9, 0, 10, 0, 0, 0 },
-                         { 0, 0, 6, 0, 10, 0, 2, 0, 0 },
-                         { 0, 0, 0, 16, 0, 2, 0, 1, 6 },
-                         { 9, 11, 0, 0, 0, 0, 1, 0, 5 },
-                         { 0, 0, 2, 0, 0, 0, 6, 5, 0 }
-                            };
+            if (currentVertex == NO_PARENT)
+            {
+                return;
+            }
+            printPath(parents[currentVertex], parents);
+            Console.Write(vertices[currentVertex] + " => ");
 
-            DijkstraAlgo(graph, 0, 9);
         }
     }
 }

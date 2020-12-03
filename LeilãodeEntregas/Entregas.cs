@@ -10,16 +10,18 @@ namespace LeilãodeEntregas
     {
         public Vertex Destino;
         public string Estado;
+        public int indice;
         public int Bonus;
         public int HorarioSaida;
         public int TempoTotal;
         public string Caminho;
 
-        public Entregas(int horarioSaida, string estado, int bonus)
+        public Entregas(int horarioSaida, string estado, int indice, int bonus)
         {
             this.HorarioSaida = horarioSaida;
             this.Estado = estado;
             this.Bonus = bonus;
+            this.indice = indice;
 
             this.Caminho = "A=>" + estado;
         }

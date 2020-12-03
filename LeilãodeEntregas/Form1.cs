@@ -18,6 +18,8 @@ namespace LeilãodeEntregas
         private static List<Mapa> arvore = new List<Mapa>();
         private static string[] HeaderVertices;
         private static List<Entregas> lstEntregas = new List<Entregas>();
+        private static int[,] matriz; 
+        private List<string> headerMatriz = new List<string>();
         public Leilao()
         {
             InitializeComponent();
@@ -115,6 +117,9 @@ namespace LeilãodeEntregas
                                     }
                                     else
                                     {
+                                        matriz = new int[vertices,vertices];
+                                        imprimeMatriz(matriz, lblmatriz,vertices,vertices);
+
                                         if (linhas.Count > vertices + 2)
                                         {
                                             #region Header
@@ -122,14 +127,20 @@ namespace LeilãodeEntregas
                                             if (linhas[1].Contains(','))
                                             {
                                                 HeaderVertices = linhas[1].Replace("‘", "").Replace("’", "").Replace("'", "").Split(',');
+                                                foreach (string nomeVertice in HeaderVertices)
+                                                {
+                                                    headerMatriz.Add(nomeVertice);
+                                                }
                                                 if (HeaderVertices.Length == vertices)
                                                 {
                                                     Regex Header = new Regex(@"^[A-ZÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕÇ]+$");
                                                     for (int HeaderIndex = 0; HeaderIndex < HeaderVertices.Length; HeaderIndex++)
                                                     {
                                                         if (HeaderVertices[HeaderIndex].Contains(';'))
+                                                        {
                                                             HeaderVertices[HeaderIndex] = HeaderVertices[HeaderIndex].Replace(";", "");
-
+                                                            headerMatriz[HeaderIndex] = headerMatriz[HeaderIndex].Replace(";", "");
+                                                        }
                                                         if (!Header.IsMatch(HeaderVertices[HeaderIndex]))
                                                         {
                                                             MessageBox.Show("Nome do vertice imcompatível! Nome do vertice deve ser escrito entre aspas simples e deve conter apenas letras", "Erro vertice " + HeaderIndex, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -154,20 +165,33 @@ namespace LeilãodeEntregas
                                                     string[] tempoPercurso = linhas[linhaMapa].Split(',');
                                                     if (tempoPercurso.Length == vertices)
                                                     {
-                                                        //for(int j = 0; j < vertices; j++)   Willian 18/10 config para não pegar a volta
-                                                        for (int j = linhaMapa - 2; j < vertices; j++)
+                                                        for(int j = 0; j < vertices; j++)   //Willian 18/10 config para não pegar a volta
+                                                       // for (int j = linhaMapa - 2; j < vertices; j++)
                                                         {
+
                                                             if (tempoPercurso[j].Contains(';'))
                                                                 tempoPercurso[j] = tempoPercurso[j].Replace(";", "");
 
                                                             if (int.TryParse(tempoPercurso[j], out minutos))
                                                             {
                                                                 if (linhaMapa == 2 && minutos > 0)
+                                                                {
                                                                     arvore.Add(new Mapa(HeaderVertices[linhaMapa - 2], HeaderVertices[j], minutos));
+                                                                    if (linhaMapa+2 <= vertices+3)
+                                                                    {
+                                                                        matriz[linhaMapa-2, j] = minutos;
+                                                                    }
+                                                                }
                                                                 else
                                                                 {
                                                                     if (j > 0 && minutos > 0)
+                                                                    {
                                                                         arvore.Add(new Mapa(HeaderVertices[linhaMapa - 2], HeaderVertices[j], minutos));
+                                                                        if (linhaMapa+2 <= vertices+3)
+                                                                        {
+                                                                            matriz[linhaMapa-2, j] = minutos;
+                                                                        }
+                                                                    }
                                                                 }
                                                             }
                                                             else
@@ -175,15 +199,16 @@ namespace LeilãodeEntregas
                                                                 MessageBox.Show("Os valores do mapa devem ser numericos!", "Erro linha " + linhaMapa + 1);
                                                                 return;
                                                             }
-
+                                                            
                                                         }
+                                                        
                                                     }
                                                     else
                                                     {
                                                         MessageBox.Show("Mapa não condiz com o número de vertices!", "Erro no mapa.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                         return;
                                                     }
-
+                                                    
                                                 }
                                                 else
                                                 {
@@ -191,7 +216,14 @@ namespace LeilãodeEntregas
                                                     return;
                                                 }
                                             }
+                                            for (int i = 0; i < vertices-1; i++) {
+                                                matriz[i+1, 0] = matriz[0, i+1];
+                                                    }
+                                            imprimeMatriz(matriz, lblmatriz, vertices, vertices );
+                                            MessageBox.Show("");
 
+                                            
+                                                   
                                             #endregion Mapa
 
                                             #region Entregas
@@ -256,7 +288,17 @@ namespace LeilãodeEntregas
                                                                     validarVertice = true;
                                                             }
                                                             if (validarVertice)
-                                                                lstEntregas.Add(new Entregas(tempo, entrega[1], bonus));
+                                                            {
+                                                                int indiceHeader = 0;
+                                                                for(int a = 0; a<headerMatriz.Count; a++) 
+                                                                {
+                                                                    if(headerMatriz[a] == entrega[1]) 
+                                                                    {
+                                                                        indiceHeader = a;
+                                                                    }
+                                                                }
+                                                                lstEntregas.Add(new Entregas(tempo, entrega[1], indiceHeader, bonus));
+                                                            }
                                                         }
                                                         else
                                                         {
@@ -291,6 +333,10 @@ namespace LeilãodeEntregas
                                     return;
                                 }
                             }
+                            Dijkstra xy = new Dijkstra();
+                            xy.dijkstra(matriz, 0, headerMatriz);
+
+
                         }
                     }
                 }
@@ -298,6 +344,19 @@ namespace LeilãodeEntregas
             }
         }
 
+
+        private void imprimeMatriz(int[,] m, Label lblMetodo, int colunas, int linhas)
+        {
+            lblMetodo.Text = "";
+            for (int i = 0; i <= m.GetUpperBound(0); i++)//percoro as linhas todas
+            {
+                for (int j = 0; j <= m.GetUpperBound(1); j++) // percoro as clunas todas
+                {
+                    lblMetodo.Text += (j == 0 ? "" : " ") + m[i, j]; //adiciona um espaço antes de todas as colunas excepto a primeira, mas ao usares o espaço como separador, vai ficar esquisito caso uns números tenham mais dígitos do que outros
+                }
+                lblMetodo.Text += "\n"; //muda de linha no fim de cada linha
+            }
+        }
         private void btnCalcular_Click(object sender, EventArgs e)
         {
             lblTempo.Visible = true;
@@ -438,7 +497,7 @@ namespace LeilãodeEntregas
                 }
             }
                 int raiz = index;
-                Console.WriteLine("Melhores caminhos: ");
+                Console.WriteLine("Melhor(es) Entrega(s): ");
                 while (raiz != 0)
                 {
                     Console.WriteLine(entregasO[raiz].caminho);
