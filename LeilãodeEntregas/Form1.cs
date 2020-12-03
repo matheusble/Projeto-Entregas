@@ -139,7 +139,7 @@ namespace LeilãodeEntregas
                                                         if (HeaderVertices[HeaderIndex].Contains(';'))
                                                         {
                                                             HeaderVertices[HeaderIndex] = HeaderVertices[HeaderIndex].Replace(";", "");
-                                                            headerMatriz[HeaderIndex] = headerMatriz[HeaderIndex].Replace(";", "");
+                                                            headerMatriz[HeaderIndex] = HeaderVertices[HeaderIndex].Replace(";", "");
                                                         }
                                                         if (!Header.IsMatch(HeaderVertices[HeaderIndex]))
                                                         {
@@ -165,8 +165,21 @@ namespace LeilãodeEntregas
                                                     string[] tempoPercurso = linhas[linhaMapa].Split(',');
                                                     if (tempoPercurso.Length == vertices)
                                                     {
-                                                       for(int j = 0; j < vertices; j++)   //Willian 18/10 config para não pegar a volta
-                                                       //for (int j = linhaMapa - 2; j < vertices; j++)
+                                                        //Matrix
+                                                        for (int j = 0; j < vertices; j++)
+                                                        {
+                                                            if (tempoPercurso[j].Contains(';'))
+                                                                tempoPercurso[j] = tempoPercurso[j].Replace(";", "");
+
+                                                            if (int.TryParse(tempoPercurso[j], out minutos))
+                                                            {
+                                                                if (linhaMapa + 2 <= vertices + 3)
+                                                                    matriz[linhaMapa - 2, j] = minutos;
+                                                            }
+                                                        }
+                                                    
+                                                        //List
+                                                        for (int j = linhaMapa - 2; j < vertices; j++)
                                                         {
 
                                                             if (tempoPercurso[j].Contains(';'))
@@ -177,20 +190,14 @@ namespace LeilãodeEntregas
                                                                 if (linhaMapa == 2 && minutos > 0)
                                                                 {
                                                                     arvore.Add(new Mapa(HeaderVertices[linhaMapa - 2], HeaderVertices[j], minutos));
-                                                                    if (linhaMapa+2 <= vertices+3)
-                                                                    {
-                                                                        matriz[linhaMapa-2, j] = minutos;
-                                                                    }
+                                                                    
                                                                 }
                                                                 else
                                                                 {
                                                                     if (j > 0 && minutos > 0)
                                                                     {
                                                                         arvore.Add(new Mapa(HeaderVertices[linhaMapa - 2], HeaderVertices[j], minutos));
-                                                                        if (linhaMapa+2 <= vertices+3)
-                                                                        {
-                                                                            matriz[linhaMapa-2, j] = minutos;
-                                                                        }
+                                                                       
                                                                     }
                                                                 }
                                                             }
@@ -497,12 +504,18 @@ namespace LeilãodeEntregas
                 }
             }
                 int raiz = index;
+                Console.WriteLine("\n");
                 Console.WriteLine("Melhor(es) Entrega(s): ");
+                List<string> melhoresCaminhos = new List<string>();
                 while (raiz != 0)
                 {
-                    Console.WriteLine(entregasO[raiz].caminho);
+                    melhoresCaminhos.Add(entregasO[raiz].caminho);
                     raiz = entregasO[raiz].predecessora;
                 }
+
+                for(int melhores = melhoresCaminhos.Count-1; melhores >= 0; melhores -- )
+                    Console.WriteLine(melhoresCaminhos[melhores]);
+
             }
         
     }

@@ -18,14 +18,14 @@ namespace LeilãodeEntregas
         // representation  
         public void dijkstra(int[,] adjacencyMatrix, int startVertex, List<string> headers)
         {
-            string k = string.Empty;
+            /*string k = string.Empty;
             foreach (string x in headers) 
             {
                 k += x + "  ";
             }
-
+            
             Console.WriteLine(k);
-
+                */
             vertices = headers;
             int nVertices = adjacencyMatrix.GetLength(0);
 
@@ -90,7 +90,7 @@ namespace LeilãodeEntregas
                                         int[] parents)
         {
             int nVertices = distances.Length;
-            Console.Write("Vertex\t Distance\tPath");
+            Console.Write("\n\nOrigem/dst\t Distância\tCaminho");
 
             for (int vertexIndex = 0;
                     vertexIndex < nVertices;
@@ -104,6 +104,7 @@ namespace LeilãodeEntregas
                     printPath(vertexIndex, parents);
                 }
             }
+            Console.WriteLine("\n");
         }
         private static void printPath(int currentVertex,
                                     int[] parents)
