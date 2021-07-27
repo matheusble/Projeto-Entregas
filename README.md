@@ -2,7 +2,8 @@
 
 Leilão de Entregas
 Uma startup quer revolucionar o mercado de entregas em sua cidade. Ela desenvolveu uma estratégia de negócios onde os clientes podem pagar um bônus para que a entrega seja priorizada em detrimento às demais. Assim, o objetivo da empresa é que, dentre uma lista de entregas a fazer, ela vai escolher aquelas que vão lhe gerar o maior lucro. Você e sua equipe foram contratados para resolver esse problema de forma eficiente
-A solução de software deve atuar sobre duas entradas:4
+A solução de software deve atuar sobre duas entradas:
+
 Uma lista de conexões entre destinos e o tempo em minutos para chegar até elas. Por exemplo:
 (A,B,5);(B,C,3);(A,D,2);(C,D,8)
 
