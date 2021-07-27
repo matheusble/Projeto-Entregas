@@ -31,7 +31,8 @@ Faça a análise da complexidade de execução e de espaço da solução desenvo
 
 
 Exemplo de arquivo de entrada:
-4
+
+        4
 	‘A’,’B’,’C’,’D’
 	0,5,0,2
 	5,0,3,0
