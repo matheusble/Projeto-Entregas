@@ -11,7 +11,10 @@ Uma lista de entregas com o horário obrigatório para saída, o destino, e o va
 Lista de entregas no dia: (0, B, 1); (5,C;10); (10,D,8)
 Neste caso a entrega para B vai chegar no tempo 0, a entrega para C no tempo 5, e a entrega para D no tempo 10. 
 O bônus para entregar em B é 1; para entregar em C é 10, e para entregar em D é 8.
-Neste caso, se a primeira entrega for realizada, o tempo para sair do ponto A e chegar em B deve ser considerado no tempo consumido, ou seja, a tarefa começa em 0 e termina em 10 (tempo do retorno). Portanto, a entrega em C já não pode ser mais realizada pois seu tempo de início foi perdido. Sendo possível realizar a entrega para D na sequência, com lucro total de 9. Já se a escolha for para esperar a entrega em C, as entregas em B e D não poderão ser realizadas, contudo, o lucro será de 10. Que é maior. 
+
+Neste caso, se a primeira entrega for realizada, o tempo para sair do ponto A e chegar em B deve ser considerado no tempo consumido, ou seja, a tarefa começa em 0 e termina em 10 (tempo do retorno). 
+Portanto, a entrega em C já não pode ser mais realizada pois seu tempo de início foi perdido. Sendo possível realizar a entrega para D na sequência, com lucro total de 9. Já se a escolha for para esperar a entrega em C, as entregas em B e D não poderão ser realizadas, contudo, o lucro será de 10. Que é maior. 
+
 Pede-se:
 Desenvolva um programa em linguagem de programação à sua escolha que seja capaz de:
 Carregar de um arquivo a lista de destinos e suas conexões; (A1)
