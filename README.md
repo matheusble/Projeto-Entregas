@@ -54,22 +54,22 @@ Apresentar análise comparativa de desempenho, por exemplo: gráficos com itera�
 
 Disciplina de Projeto Interdisciplinar (PI):
 
-Desenvolvimento de um Projeto em Equipe (Ágile em até 4 integrantes) 
-Visão de Produto
-Apresentação do Problema (Leilão de Entregas);
-Especificação da Solução do Problema;
-Implementação da Solução;
-Apresentação da Solução;
-Visão de Projeto
-Organização da Equipe
-Planejamento e Execução do Projeto (Scrum)
+Desenvolvimento de um Projeto em Equipe (Ágile em até 4 integrantes).
+Visão de Produto.
+Apresentação do Problema (Leilão de Entregas).
+Especificação da Solução do Problema.
+Implementação da Solução.
+Apresentação da Solução.
+Visão de Projeto.
+Organização da Equipe.
+Planejamento e Execução do Projeto (Scrum).
 
 Disciplina de Engenharia de Software:
 
-Desenvolvimento do Projeto utilizando metodologia ágil (quebrar o projeto em pequenas entregas de valor)
-Descoberta de produto (como montar a visão do produto utilizando técnicas descoberta para isso)
-Criar um Trello com as etapas do fluxo de desenvolvimento  e com as atividades quebradas o trello precisa ter a etapa de descoberta do produto até a entrega
-Os épicos do projeto devem ter o detalhamento do negócio e as histórias devem ser escritas com instruções de como será feito
-Utilização de testes ágeis
-Apresentação final do MVP, detalhando método utilizado 
+Desenvolvimento do Projeto utilizando metodologia ágil (quebrar o projeto em pequenas entregas de valor).
+Descoberta de produto (como montar a visão do produto utilizando técnicas descoberta para isso).
+Criar um Trello com as etapas do fluxo de desenvolvimento  e com as atividades quebradas o trello precisa ter a etapa de descoberta do produto até a entrega.
+Os épicos do projeto devem ter o detalhamento do negócio e as histórias devem ser escritas com instruções de como será feito.
+Utilização de testes ágeis.
+Apresentação final do MVP, detalhando método utilizado .
 
