@@ -45,13 +45,15 @@ Exemplo de arquivo de entrada:
 	10,D,8
 
 
-Disciplina de Inteligência Artificial (IA)
+Disciplina de Inteligência Artificial (IA):
+
 Desenvolver uma versão do Leilão de Entregas utilizando algoritmos de Inteligência Artificial. (A2)
 Apresentar resultados comparativos entre a solução utilizada para a disciplina de Análise de Algoritmos com a solução utilizada para a disciplina de Inteligência Artificial.
 Apresentar análise comparativa de desempenho, por exemplo: gráficos com iteração do tipo Solução A versus Solução B.
 
 
-Disciplina de Projeto Interdisciplinar (PI)
+Disciplina de Projeto Interdisciplinar (PI):
+
 Desenvolvimento de um Projeto em Equipe (Ágile em até 4 integrantes) 
 Visão de Produto
 Apresentação do Problema (Leilão de Entregas);
@@ -62,7 +64,8 @@ Visão de Projeto
 Organização da Equipe
 Planejamento e Execução do Projeto (Scrum)
 
-Disciplina de Engenharia de Software
+Disciplina de Engenharia de Software:
+
 Desenvolvimento do Projeto utilizando metodologia ágil (quebrar o projeto em pequenas entregas de valor)
 Descoberta de produto (como montar a visão do produto utilizando técnicas descoberta para isso)
 Criar um Trello com as etapas do fluxo de desenvolvimento  e com as atividades quebradas o trello precisa ter a etapa de descoberta do produto até a entrega
