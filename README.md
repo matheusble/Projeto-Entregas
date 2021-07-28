@@ -67,9 +67,13 @@ Planejamento e Execução do Projeto (Scrum).
 Disciplina de Engenharia de Software:
 
 Desenvolvimento do Projeto utilizando metodologia ágil (quebrar o projeto em pequenas entregas de valor).
+
 Descoberta de produto (como montar a visão do produto utilizando técnicas descoberta para isso).
+
 Criar um Trello com as etapas do fluxo de desenvolvimento  e com as atividades quebradas o trello precisa ter a etapa de descoberta do produto até a entrega.
+
 Os épicos do projeto devem ter o detalhamento do negócio e as histórias devem ser escritas com instruções de como será feito.
+
 Utilização de testes ágeis.
 Apresentação final do MVP, detalhando método utilizado .
 
