@@ -21,13 +21,14 @@ Neste caso, se a primeira entrega for realizada, o tempo para sair do ponto A e 
 Portanto, a entrega em C já não pode ser mais realizada pois seu tempo de início foi perdido. Sendo possível realizar a entrega para D na sequência, com lucro total de 9. Já se a escolha for para esperar a entrega em C, as entregas em B e D não poderão ser realizadas, contudo, o lucro será de 10. Que é maior. 
 
 Pede-se:
+<ul>
 Desenvolva um programa em linguagem de programação à sua escolha que seja capaz de:
-Carregar de um arquivo a lista de destinos e suas conexões; (A1)
-Carregar a lista de entregas conforme modelo; (A1)
-Exibir a sequência de entregas a ser realizada no dia e o lucro que será obtido com elas; (A1 e A2)
-Na A1 espera-se uma solução qualquer, não necessariamente calculando os menores caminhos do grafo. 
-Na A2 espera-se um algoritmo eficiente que apresente a melhor solução para o problema.
-Faça a análise da complexidade de execução e de espaço da solução desenvolvida. (A2)
+<li>Carregar de um arquivo a lista de destinos e suas conexões; (A1)</li>
+<li>Carregar a lista de entregas conforme modelo; (A1)</li>
+<li>Exibir a sequência de entregas a ser realizada no dia e o lucro que será obtido com elas; (A1 e A2)</li>
+<li>Na A1 espera-se uma solução qualquer, não necessariamente calculando os menores caminhos do grafo.</li> 
+<li>Na A2 espera-se um algoritmo eficiente que apresente a melhor solução para o problema.</li>
+<li>Faça a análise da complexidade de execução e de espaço da solução desenvolvida. (A2)</li>
 
 
 Exemplo de arquivo de entrada:
@@ -49,7 +50,7 @@ Disciplina de Inteligência Artificial (IA):
 <ul>
 <li>Desenvolver uma versão do Leilão de Entregas utilizando algoritmos de Inteligência Artificial. (A2)</li>
 <li>Apresentar resultados comparativos entre a solução utilizada para a disciplina de Análise de Algoritmos com a solução utilizada para a disciplina de Inteligência Artificial.</li>
-<li>Apresentar análise comparativa de desempenho, por exemplo: gráficos com iteração do tipo Solução A versus Solução B.<li>
+<li>Apresentar análise comparativa de desempenho, por exemplo: gráficos com iteração do tipo Solução A versus Solução B.</li>
 </ul>
 
 Disciplina de Projeto Interdisciplinar (PI):
@@ -64,13 +65,14 @@ Disciplina de Projeto Interdisciplinar (PI):
 <li>Organização da Equipe.</li>
 <li>Planejamento e Execução do Projeto (Scrum).</li>
 </ul>
+
 Disciplina de Engenharia de Software:
 <ul>
 <li>Desenvolvimento do Projeto utilizando metodologia ágil (quebrar o projeto em pequenas entregas de valor).</li>
 <li>Descoberta de produto (como montar a visão do produto utilizando técnicas descoberta para isso).</li>
 <li>Criar um Trello com as etapas do fluxo de desenvolvimento  e com as atividades quebradas o trello precisa ter a etapa de descoberta do produto até a entrega.</li>
 <li>Os épicos do projeto devem ter o detalhamento do negócio e as histórias devem ser escritas com instruções de como será feito.</li>
+<li>Utilização de testes ágeis.</ul>
+<li>Apresentação final do MVP, detalhando método utilizado.</ul>
 </ul>
-Utilização de testes ágeis.
-Apresentação final do MVP, detalhando método utilizado .
 
