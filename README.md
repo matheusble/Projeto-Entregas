@@ -46,34 +46,31 @@ Exemplo de arquivo de entrada:
 
 
 Disciplina de Inteligência Artificial (IA):
-
-Desenvolver uma versão do Leilão de Entregas utilizando algoritmos de Inteligência Artificial. (A2)
-Apresentar resultados comparativos entre a solução utilizada para a disciplina de Análise de Algoritmos com a solução utilizada para a disciplina de Inteligência Artificial.
-Apresentar análise comparativa de desempenho, por exemplo: gráficos com iteração do tipo Solução A versus Solução B.
-
+<ul>
+<li>Desenvolver uma versão do Leilão de Entregas utilizando algoritmos de Inteligência Artificial. (A2)</li>
+<li>Apresentar resultados comparativos entre a solução utilizada para a disciplina de Análise de Algoritmos com a solução utilizada para a disciplina de Inteligência Artificial.</li>
+<li>Apresentar análise comparativa de desempenho, por exemplo: gráficos com iteração do tipo Solução A versus Solução B.<li>
+</ul>
 
 Disciplina de Projeto Interdisciplinar (PI):
-
-Desenvolvimento de um Projeto em Equipe (Ágile em até 4 integrantes).
-Visão de Produto.
-Apresentação do Problema (Leilão de Entregas).
-Especificação da Solução do Problema.
-Implementação da Solução.
-Apresentação da Solução.
-Visão de Projeto.
-Organização da Equipe.
-Planejamento e Execução do Projeto (Scrum).
-
+<ul>
+<li>Desenvolvimento de um Projeto em Equipe (Ágile em até 4 integrantes).</li>
+<li>Visão de Produto.</li>
+<li>Apresentação do Problema (Leilão de Entregas).</li>
+<li>Especificação da Solução do Problema.</li>
+<li>Implementação da Solução.</li>
+<li>Apresentação da Solução.</li>
+<li>Visão de Projeto.</li>
+<li>Organização da Equipe.</li>
+<li>Planejamento e Execução do Projeto (Scrum).</li>
+</ul>
 Disciplina de Engenharia de Software:
-
-Desenvolvimento do Projeto utilizando metodologia ágil (quebrar o projeto em pequenas entregas de valor).
-
-Descoberta de produto (como montar a visão do produto utilizando técnicas descoberta para isso).
-
-Criar um Trello com as etapas do fluxo de desenvolvimento  e com as atividades quebradas o trello precisa ter a etapa de descoberta do produto até a entrega.
-
-Os épicos do projeto devem ter o detalhamento do negócio e as histórias devem ser escritas com instruções de como será feito.
-
+<ul>
+<li>Desenvolvimento do Projeto utilizando metodologia ágil (quebrar o projeto em pequenas entregas de valor).</li>
+<li>Descoberta de produto (como montar a visão do produto utilizando técnicas descoberta para isso).</li>
+<li>Criar um Trello com as etapas do fluxo de desenvolvimento  e com as atividades quebradas o trello precisa ter a etapa de descoberta do produto até a entrega.</li>
+<li>Os épicos do projeto devem ter o detalhamento do negócio e as histórias devem ser escritas com instruções de como será feito.</li>
+</ul>
 Utilização de testes ágeis.
 Apresentação final do MVP, detalhando método utilizado .
 
