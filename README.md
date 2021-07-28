@@ -21,15 +21,15 @@ Neste caso, se a primeira entrega for realizada, o tempo para sair do ponto A e 
 Portanto, a entrega em C já não pode ser mais realizada pois seu tempo de início foi perdido. Sendo possível realizar a entrega para D na sequência, com lucro total de 9. Já se a escolha for para esperar a entrega em C, as entregas em B e D não poderão ser realizadas, contudo, o lucro será de 10. Que é maior. 
 
 Pede-se:
-<ul>
 Desenvolva um programa em linguagem de programação à sua escolha que seja capaz de:
+<ul>
 <li>Carregar de um arquivo a lista de destinos e suas conexões; (A1)</li>
 <li>Carregar a lista de entregas conforme modelo; (A1)</li>
 <li>Exibir a sequência de entregas a ser realizada no dia e o lucro que será obtido com elas; (A1 e A2)</li>
 <li>Na A1 espera-se uma solução qualquer, não necessariamente calculando os menores caminhos do grafo.</li> 
 <li>Na A2 espera-se um algoritmo eficiente que apresente a melhor solução para o problema.</li>
 <li>Faça a análise da complexidade de execução e de espaço da solução desenvolvida. (A2)</li>
-
+</ul>
 
 Exemplo de arquivo de entrada:
 
